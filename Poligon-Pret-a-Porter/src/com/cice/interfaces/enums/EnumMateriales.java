@@ -2,8 +2,10 @@ package com.cice.interfaces.enums;
 
 public enum EnumMateriales {
 	CARTON(100d),
-	PLASTICO(320D),
-	MADERA(500D);
+	PLASTICO(320d),
+	MADERA(500d),
+	TELA(600d);
+
 	
 	private double precio;
 	
@@ -12,9 +14,8 @@ public enum EnumMateriales {
 	}
 
 	public double getPrecio() {
-		return precio;
+		return this.precio;
 	}
 
-	
 	
 }
