@@ -8,15 +8,20 @@ public class Producto implements IProducto{
     private String nombre;
     private EnumCategorias categoria;
     private Long stockage;
+    
+    public Producto(String nombre, EnumCategorias categoria) {
+		this.nombre = nombre;
+		this.categoria = categoria;
+		setCodigo(generarCodigoProducto(generarBaseCodigoProducto(categoria)));
+	}
 
-    public Producto() {
-    }
 
-    public Producto(String codigo, String nombre, EnumCategorias categoria, Long stockage) {
-        this.codigo = codigo;
+
+	public Producto(String nombre, EnumCategorias categoria, Long stockage) {
         this.nombre = nombre;
         this.categoria = categoria;
         this.stockage = stockage;
+        setCodigo(generarCodigoProducto(generarBaseCodigoProducto(categoria)));
     }
 
     public String getCodigo() {
@@ -68,21 +73,21 @@ public class Producto implements IProducto{
      */
     @Override
     public String generarCodigoProducto(String baseCodigoProducto){
-        String codigoProducto = null;
+    	StringBuilder codigoProducto = null;
         String[] datos = baseCodigoProducto.split("_");
         int aux = 0;
         int aux2 = 0;
-        for (int c : datos[1].toCharArray()){
-            aux += c;
+        for (char c : datos[1].toCharArray()){
+            aux += Integer.parseInt(String.valueOf(c));
             if(String.valueOf(aux).length() > 1){
                 for (int d : String.valueOf(aux).toCharArray()){
-                    aux2 += d;
+                    aux2 += Integer.parseInt(String.valueOf(d));
                 }
                 aux = aux2;
             }
         }
-        String random = String.valueOf(Math.floor(Math.random() * 100));
-        codigoProducto = baseCodigoProducto.concat("_").concat(datos[0].concat(String.valueOf(aux)).concat(random));
-        return codigoProducto;
+        String random = String.valueOf(Math.round(Math.random() * 100));
+        codigoProducto =  new StringBuilder(baseCodigoProducto).append("_").append(datos[0]).append(aux).append(random);
+        return codigoProducto.toString();
     }
 }

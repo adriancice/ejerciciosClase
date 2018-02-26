@@ -3,7 +3,9 @@ package com.cice.supermercado.business.enums;
 public enum EnumCategorias {
 
     PERECEDEROS_NACIONALES("0001", "8"),
-    PERECEDEROS_NO_NACIONALES("0001", "4");
+    PERECEDEROS_NO_NACIONALES("0001", "4"),
+	NO_PERECEDEROS_ENLATADO_NACIONAL("0012","8");
+	
 
     private String baseCodigo;
     private String codigoPais;
